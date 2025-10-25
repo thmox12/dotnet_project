@@ -101,7 +101,7 @@
 
 1. **Cloner le repository**
 ```bash
-git clone https://github.com/zakariaaissari/EducationManagementDotNet.git
+git clone https://github.com/thmox12/EducationManagementDotNet.git
 cd EducationManagementDotNet
 ```
 
@@ -273,8 +273,8 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 ## 👨‍💻 Auteur
 
 **Zakaria Aissari**
-- GitHub: [@zakariaaissari](https://github.com/zakariaaissari)
-- Email: zakariaaissari@example.com
+- GitHub: [@thmox12](https://github.com/thmox12)
+- Email: thmox12@example.com
 
 ## 📞 Support
 
