@@ -1,62 +1,62 @@
 @page
 @model isgasoir.Pages.Activities.IndexModel
 @{
-    ViewData["Title"] = "Activities Management";
+    ViewData["Title"] = "Gestion des Activités";
 }
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2><i class="fas fa-tasks me-2"></i>Activities Management</h2>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addActivityModal">
-        <i class="fas fa-plus me-1"></i>Add New Activity
+    <h2 style="color: #2c3e50; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);"><i class="fas fa-tasks me-2" style="color: #667eea;"></i>Gestion des Activités</h2>
+    <button class="btn" data-bs-toggle="modal" data-bs-target="#addActivityModal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);">
+        <i class="fas fa-plus me-1"></i>Ajouter une Activité
     </button>
 </div>
 
 <!-- Filter Section -->
-<div class="card mb-4">
-    <div class="card-header">
-        <h6 class="mb-0">Filters</h6>
+<div class="card mb-4" style="box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: none; border-radius: 15px;">
+    <div class="card-header" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 15px 15px 0 0; border: none;">
+        <h6 class="mb-0" style="color: #2c3e50; font-weight: 600;">Filtres</h6>
     </div>
     <div class="card-body">
         <div class="row">
             <div class="col-md-4">
-                <label for="filterType" class="form-label">Activity Type</label>
-                <select class="form-select" id="filterType" onchange="filterActivities()">
-                    <option value="">All Types</option>
+                <label for="filterType" class="form-label" style="color: #2c3e50; font-weight: 600;">Type d'Activité</label>
+                <select class="form-select" id="filterType" onchange="filterActivities()" style="border-radius: 8px; border: 2px solid #e9ecef; padding: 12px; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 0.2rem rgba(102, 126, 234, 0.25)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                    <option value="">Tous les Types</option>
                     <option value="TP">TP (Travaux Pratiques)</option>
                     <option value="TD">TD (Travaux Dirigés)</option>
                 </select>
             </div>
             <div class="col-md-4">
-                <label for="filterChapter" class="form-label">Chapter</label>
-                <select class="form-select" id="filterChapter" onchange="filterActivities()">
-                    <option value="">All Chapters</option>
+                <label for="filterChapter" class="form-label" style="color: #2c3e50; font-weight: 600;">Chapitre</label>
+                <select class="form-select" id="filterChapter" onchange="filterActivities()" style="border-radius: 8px; border: 2px solid #e9ecef; padding: 12px; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 0.2rem rgba(102, 126, 234, 0.25)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                    <option value="">Tous les Chapitres</option>
                 </select>
             </div>
             <div class="col-md-4">
-                <button class="btn btn-outline-secondary mt-4" onclick="clearFilters()">
-                    <i class="fas fa-times me-1"></i>Clear Filters
+                <button class="btn btn-outline-secondary mt-4" onclick="clearFilters()" style="border-radius: 8px; padding: 10px 20px; font-weight: 600;">
+                    <i class="fas fa-times me-1"></i>Effacer les Filtres
                 </button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="card">
-    <div class="card-header">
-        <h5 class="mb-0">Activities List</h5>
+<div class="card" style="box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: none; border-radius: 15px;">
+    <div class="card-header" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 15px 15px 0 0; border: none;">
+        <h5 class="mb-0" style="color: #2c3e50; font-weight: 600;">Liste des Activités</h5>
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-striped table-hover" id="activitiesTable">
-                <thead>
+            <table class="table table-striped table-hover" id="activitiesTable" style="border-radius: 10px; overflow: hidden;">
+                <thead style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
                     <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Type</th>
-                        <th>Chapter</th>
-                        <th>Duration</th>
-                        <th>Due Date</th>
-                        <th>Actions</th>
+                        <th style="border: none; font-weight: 600;">ID</th>
+                        <th style="border: none; font-weight: 600;">Titre</th>
+                        <th style="border: none; font-weight: 600;">Type</th>
+                        <th style="border: none; font-weight: 600;">Chapitre</th>
+                        <th style="border: none; font-weight: 600;">Durée</th>
+                        <th style="border: none; font-weight: 600;">Date d'Échéance</th>
+                        <th style="border: none; font-weight: 600;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,25 +70,25 @@
 <!-- Add Activity Modal -->
 <div class="modal fade" id="addActivityModal" tabindex="-1" aria-labelledby="addActivityModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addActivityModalLabel">Add New Activity</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content" style="border-radius: 15px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+            <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px 15px 0 0; border: none;">
+                <h5 class="modal-title" id="addActivityModalLabel" style="font-weight: 600;">Ajouter une Nouvelle Activité</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="background: #f8f9fa;">
                 <form id="addActivityForm">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="activityTitle" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="activityTitle" required>
+                                <label for="activityTitle" class="form-label" style="color: #2c3e50; font-weight: 600;">Titre</label>
+                                <input type="text" class="form-control" id="activityTitle" required style="border-radius: 8px; border: 2px solid #e9ecef; padding: 12px; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 0.2rem rgba(102, 126, 234, 0.25)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="activityType" class="form-label">Type</label>
-                                <select class="form-select" id="activityType" required>
-                                    <option value="">Select Type</option>
+                                <label for="activityType" class="form-label" style="color: #2c3e50; font-weight: 600;">Type</label>
+                                <select class="form-select" id="activityType" required style="border-radius: 8px; border: 2px solid #e9ecef; padding: 12px; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 0.2rem rgba(102, 126, 234, 0.25)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                                    <option value="">Sélectionner le Type</option>
                                     <option value="TP">TP (Travaux Pratiques)</option>
                                     <option value="TD">TD (Travaux Dirigés)</option>
                                 </select>
@@ -96,51 +96,51 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="activityDescription" class="form-label">Description</label>
-                        <textarea class="form-control" id="activityDescription" rows="3"></textarea>
+                        <label for="activityDescription" class="form-label" style="color: #2c3e50; font-weight: 600;">Description</label>
+                        <textarea class="form-control" id="activityDescription" rows="3" style="border-radius: 8px; border: 2px solid #e9ecef; padding: 12px; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 0.2rem rgba(102, 126, 234, 0.25)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="activityDuration" class="form-label">Duration (minutes)</label>
-                                <input type="number" class="form-control" id="activityDuration" min="1" required>
+                                <label for="activityDuration" class="form-label" style="color: #2c3e50; font-weight: 600;">Durée (minutes)</label>
+                                <input type="number" class="form-control" id="activityDuration" min="1" required style="border-radius: 8px; border: 2px solid #e9ecef; padding: 12px; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 0.2rem rgba(102, 126, 234, 0.25)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="activityDueDate" class="form-label">Due Date</label>
-                                <input type="datetime-local" class="form-control" id="activityDueDate">
+                                <label for="activityDueDate" class="form-label" style="color: #2c3e50; font-weight: 600;">Date d'Échéance</label>
+                                <input type="datetime-local" class="form-control" id="activityDueDate" style="border-radius: 8px; border: 2px solid #e9ecef; padding: 12px; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 0.2rem rgba(102, 126, 234, 0.25)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                             </div>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="activityInstructions" class="form-label">Instructions</label>
+                        <label for="activityInstructions" class="form-label" style="color: #2c3e50; font-weight: 600;">Instructions</label>
                         <div class="d-flex gap-2 mb-2">
-                            <button type="button" class="btn btn-outline-primary btn-sm" onclick="generateActivityContent()" id="generateActivityContentBtn">
-                                <i class="fas fa-magic me-1"></i>Generate Content with AI
+                            <button type="button" class="btn btn-outline-primary btn-sm" onclick="generateActivityContent()" id="generateActivityContentBtn" style="border-radius: 8px; font-weight: 600;">
+                                <i class="fas fa-magic me-1"></i>Générer avec IA
                             </button>
-                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="clearActivityContent()" id="clearActivityContentBtn">
-                                <i class="fas fa-eraser me-1"></i>Clear
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="clearActivityContent()" id="clearActivityContentBtn" style="border-radius: 8px; font-weight: 600;">
+                                <i class="fas fa-eraser me-1"></i>Effacer
                             </button>
                         </div>
-                        <textarea class="form-control" id="activityInstructions" rows="4" placeholder="Enter activity instructions or generate them with AI..."></textarea>
-                        <div class="form-text">You can write your own instructions or use AI to generate them based on the activity details.</div>
+                        <textarea class="form-control" id="activityInstructions" rows="4" placeholder="Entrez les instructions de l'activité ou générez-les avec l'IA..." style="border-radius: 8px; border: 2px solid #e9ecef; padding: 12px; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 0.2rem rgba(102, 126, 234, 0.25)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
+                        <div class="form-text" style="color: #6c757d; font-weight: 500;">Vous pouvez écrire vos propres instructions ou utiliser l'IA pour les générer en fonction des détails de l'activité.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="activityChapter" class="form-label">Chapter</label>
-                        <select class="form-select" id="activityChapter" required>
-                            <option value="">Select Chapter</option>
+                        <label for="activityChapter" class="form-label" style="color: #2c3e50; font-weight: 600;">Chapitre</label>
+                        <select class="form-select" id="activityChapter" required style="border-radius: 8px; border: 2px solid #e9ecef; padding: 12px; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 0.2rem rgba(102, 126, 234, 0.25)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                            <option value="">Sélectionner un Chapitre</option>
                         </select>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" onclick="confirmAndSaveActivity()" id="confirmSaveActivityBtn" style="display: none;">
-                    <i class="fas fa-check me-1"></i>Confirm & Save Activity
+            <div class="modal-footer" style="background: #f8f9fa; border-radius: 0 0 15px 15px; border: none;">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border-radius: 8px; padding: 10px 20px; font-weight: 600;">Annuler</button>
+                <button type="button" class="btn" onclick="confirmAndSaveActivity()" id="confirmSaveActivityBtn" style="display: none; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border: none; border-radius: 8px; padding: 10px 20px; font-weight: 600; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);">
+                    <i class="fas fa-check me-1"></i>Confirmer & Enregistrer
                 </button>
-                <button type="button" class="btn btn-primary" onclick="addActivity()" id="saveActivityBtn">
-                    <i class="fas fa-save me-1"></i>Save Activity
+                <button type="button" class="btn" onclick="addActivity()" id="saveActivityBtn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; padding: 10px 20px; font-weight: 600; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);">
+                    <i class="fas fa-save me-1"></i>Enregistrer l'Activité
                 </button>
             </div>
         </div>
